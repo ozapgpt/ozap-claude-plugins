@@ -1,0 +1,15 @@
+{
+  "name": "ozaponline",
+  "description": "Plugins do oZapOnline para Claude Code: atendente de WhatsApp com IA.",
+  "owner": {
+    "name": "oZapOnline",
+    "url": "https://ozaponline.com"
+  },
+  "plugins": [
+    {
+      "name": "ozap",
+      "source": "./plugins/ozap",
+      "description": "Monte, teste e opere o atendente de WhatsApp com IA do oZapOnline pelo Claude Code."
+    }
+  ]
+}

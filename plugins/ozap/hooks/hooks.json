@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__plugin_ozap_ozap__(send_message|send_media|send_location|send_contact|toggle_ai|update_agent_prompt|edit_agent_prompt|restore_prompt_version|set_number_rules|clear_allowed_numbers|link_agent_to_connection)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/confirmar-efeito.sh\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__plugin_ozap_ozap__(get_messages|list_chats|list_pending_learnings)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/lembrar-conteudo-terceiro.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}

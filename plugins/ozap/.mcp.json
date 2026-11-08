@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "ozap": {
+      "type": "http",
+      "url": "https://api.ozaponline.com/api/v1/mcp",
+      "oauth": {
+        "scopes": "query_data send_message update_chat manage_agent read_config configure_agent manage_knowledge manage_funnel manage_automation manage_connection"
+      }
+    }
+  }
+}

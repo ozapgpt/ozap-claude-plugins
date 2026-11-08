@@ -1,0 +1,19 @@
+{
+  "name": "ozap",
+  "displayName": "oZapOnline: WhatsApp com IA",
+  "version": "0.1.0",
+  "description": "Monte, teste e opere o atendente de WhatsApp com IA do oZapOnline pelo Claude Code.",
+  "author": {
+    "name": "oZapOnline",
+    "url": "https://ozaponline.com"
+  },
+  "homepage": "https://ozaponline.com/mcp",
+  "repository": "https://github.com/ozapgpt/ozap-claude-plugins",
+  "license": "MIT",
+  "keywords": ["whatsapp", "atendimento", "crm", "chatbot", "mcp"],
+  "icon": "./icon.png",
+  "documentationUrl": "https://github.com/ozapgpt/ozap-claude-plugins/blob/main/plugins/ozap/README.md",
+  "supportUrl": "https://wa.me/555192028254",
+  "privacyPolicyUrl": "https://ozaponline.com/privacidade",
+  "termsOfServiceUrl": "https://ozaponline.com/termos"
+}
