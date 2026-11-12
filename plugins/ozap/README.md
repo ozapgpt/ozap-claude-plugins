@@ -7,7 +7,7 @@ O oZapOnline coloca um atendente com IA no WhatsApp de uma empresa, para respond
 ## O que você precisa
 
 - Uma conta no oZapOnline ([app.ozaponline.com/cadastro](https://app.ozaponline.com/cadastro)) com um número de WhatsApp conectado.
-- Para montar e mudar o atendente pelo Claude (criar agente, base de conhecimento, funil), um plano pago ativo.
+- Para testar, nada mais: a conta grátis monta, testa e liga o atendente pelo Claude. Para a IA continuar respondendo depois do teste grátis, um plano.
 - Claude Code instalado.
 
 ## Instalar
@@ -39,6 +39,7 @@ O plugin funciona com os dois. O tipo de cada número aparece em `get_connection
 | `/ozap:testar-e-ir-ao-ar` | Testar sem mandar mensagem a ninguém e, com sua ordem, ligar a IA |
 | `/ozap:diagnosticar` | Descobrir por que a IA não responde (só lê) |
 | `/ozap:triar-conversas` | Ver quem está esperando resposta e o que cada um pediu |
+| `/ozap:responder-pendentes` | O Claude escreve as respostas de quem está esperando e você aprova antes de cada envio |
 | `/ozap:relatorio-semanal` | Resumo do atendimento no período |
 | `/ozap:conectar-whatsapp` | Gerar o link para conectar um número |
 | `/ozap:integrar-api` | Integrar o seu sistema pela API REST e webhooks |
@@ -47,9 +48,10 @@ Também dá para pedir em texto livre. Exemplos:
 
 1. "Monte o atendente da Padaria do João: abre das 6h às 20h, entrega no bairro, aceita Pix."
 2. "Quem está esperando resposta desde ontem?"
-3. "Leia o prompt do meu atendente e diga o que está faltando."
-4. "Pause a IA na conversa com a Maria até amanhã às 9h e mova ela para Negociação."
-5. "Simule um cliente perguntando o preço do bolo de chocolate."
+3. "Escreve as respostas de quem está esperando que eu aprovo."
+4. "Leia o prompt do meu atendente e diga o que está faltando."
+5. "Pause a IA na conversa com a Maria até amanhã às 9h e mova ela para Negociação."
+6. "Simule um cliente perguntando o preço do bolo de chocolate."
 
 ## Permissões
 
@@ -80,7 +82,7 @@ Com permissão de ler conversas, o acesso fica restrito a um número.
 
 ## Problemas comuns
 
-- **Uma ferramenta não aparece:** a permissão não foi marcada, ou a conta não tem plano pago para as ferramentas de montagem. Refaça o login em `/mcp` e marque a permissão.
+- **Uma ferramenta não aparece:** a permissão não foi marcada, ou a conta foi cancelada ou está vencida. Refaça o login em `/mcp` e marque a permissão.
 - **`send_limit_reached`:** o número chegou ao teto de envios da hora ou do dia. A resposta diz em quantos segundos tentar de novo.
 - **A IA não responde clientes:** rode `/ozap:diagnosticar`.
 
@@ -98,7 +100,7 @@ WhatsApp [+55 51 9202-8254](https://wa.me/555192028254) ou contato@ozaponline.co
 
 oZapOnline puts an AI agent on a business WhatsApp number so it answers customers around the clock. This plugin brings that agent into Claude Code: set it up, test it and follow the conversations by talking to Claude, without opening the dashboard.
 
-**Requirements.** An oZapOnline account with a WhatsApp number connected. Setting up the agent from Claude (creating the agent, knowledge base, sales pipeline) needs an active paid plan. The product and support are in Brazilian Portuguese.
+**Requirements.** An oZapOnline account with a WhatsApp number connected. A free account can set up, test and switch on the agent from Claude; a paid plan keeps the AI answering after the free trial. The product and support are in Brazilian Portuguese.
 
 **Install.**
 
@@ -111,7 +113,7 @@ Then run `/mcp`, pick `plugin:ozap:ozap` and **Authenticate**. Sign in to oZapOn
 
 **Two kinds of WhatsApp connection.** A number connects either by QR code, like WhatsApp Web (not an official Meta API; WhatsApp may restrict a number that sends bulk or unsolicited messages), or through the official WhatsApp Business Platform (pending Meta approval for self-service sign-up; Meta rules apply, including approved templates outside the 24-hour window). Sends through the API and MCP are capped at 60 per hour and 300 per day per QR-connected number. The plugin works with both.
 
-**What you can ask.** The commands `/ozap:configurar-cliente` (set up an agent from scratch), `/ozap:revisar-atendente` (review the prompt), `/ozap:testar-e-ir-ao-ar` (test without messaging anyone, then go live on your order), `/ozap:diagnosticar` (why the AI is not replying, read only), `/ozap:triar-conversas` (who is waiting for a reply), `/ozap:relatorio-semanal` (period summary), `/ozap:conectar-whatsapp` (connection link) and `/ozap:integrar-api` (REST API and webhooks). Examples: "Which customers have been waiting for a reply since yesterday?", "Read my agent's prompt and tell me what is missing.", "Pause the AI in the chat with Maria until 9am tomorrow and move her to Negotiation."
+**What you can ask.** The commands `/ozap:configurar-cliente` (set up an agent from scratch), `/ozap:revisar-atendente` (review the prompt), `/ozap:testar-e-ir-ao-ar` (test without messaging anyone, then go live on your order), `/ozap:diagnosticar` (why the AI is not replying, read only), `/ozap:triar-conversas` (who is waiting for a reply), `/ozap:responder-pendentes` (Claude drafts replies to waiting customers and you approve each send), `/ozap:relatorio-semanal` (period summary), `/ozap:conectar-whatsapp` (connection link) and `/ozap:integrar-api` (REST API and webhooks). Examples: "Which customers have been waiting for a reply since yesterday?", "Read my agent's prompt and tell me what is missing.", "Pause the AI in the chat with Maria until 9am tomorrow and move her to Negotiation."
 
 **Permissions.** Chosen on the consent screen; Claude only sees the tools of the permissions granted. With chat-reading permission, access is limited to one number.
 

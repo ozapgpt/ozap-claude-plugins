@@ -1,7 +1,7 @@
 {
   "name": "ozap",
   "displayName": "oZapOnline: WhatsApp com IA",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Monte, teste e opere o atendente de WhatsApp com IA do oZapOnline pelo Claude Code.",
   "author": {
     "name": "oZapOnline",
