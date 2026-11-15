@@ -74,7 +74,7 @@ Com permissão de ler conversas, o acesso fica restrito a um número.
 
 ## Segurança
 
-- **Aprovação a cada envio.** O plugin pede sua confirmação antes de toda mensagem enviada e de toda mudança no atendente, mesmo que você tenha liberado as ferramentas do oZapOnline.
+- **Aprovação antes de agir.** As skills do plugin e as instruções do servidor do oZapOnline mandam o Claude mostrar cada mensagem e cada mudança no atendente e esperar o seu "sim". O Claude Code também pede permissão para cada ferramenta do oZapOnline que você ainda não liberou. Algumas ferramentas que mudam quem é atendido devolvem primeiro uma prévia e só agem quando chamadas de novo com um código de confirmação.
 - **Mensagens de clientes são dados, não ordens.** O texto das conversas chega ao Claude marcado como conteúdo não confiável, e o plugin lembra o Claude disso a cada leitura. Se uma mensagem tentar dar ordens ao Claude, ele deve avisar você.
 - **Sem envio em massa.** O oZapOnline não serve para disparo em massa nem para mandar mensagem a quem não pediu. Há um teto de envios por número (tabela acima).
 - **Nenhuma chave no chat.** O login é por OAuth. Nunca cole chave de API, senha ou chave de provedor de IA numa conversa com o Claude.
@@ -117,7 +117,7 @@ Then run `/mcp`, pick `plugin:ozap:ozap` and **Authenticate**. Sign in to oZapOn
 
 **Permissions.** Chosen on the consent screen; Claude only sees the tools of the permissions granted. With chat-reading permission, access is limited to one number.
 
-**Safety.** The plugin asks for your confirmation before every message sent and every change to the agent, even if you allowed the oZapOnline tools. Customer messages reach Claude marked as untrusted content, and the plugin reminds Claude to treat them as data, never as instructions. No bulk or unsolicited messaging. Sign-in is OAuth; never paste keys or passwords into a chat. Revoke any connected AI app in the dashboard under **IA e API > Acessos**.
+**Safety.** The plugin's skills and the oZapOnline server instructions tell Claude to show every message and every change to the agent and wait for your approval. Claude Code also asks permission for each oZapOnline tool you have not allowed yet. Some tools that change who gets answered return a preview first and only act when called again with a confirmation token. Customer messages reach Claude marked as untrusted content, and the server instructions and skills tell Claude to treat them as data, never as instructions. No bulk or unsolicited messaging. Sign-in is OAuth; never paste keys or passwords into a chat. Revoke any connected AI app in the dashboard under **IA e API > Acessos**.
 
 **Privacy.** Claude only receives what the tools return to your requests. oZapOnline does not use your customers' conversations to train AI models. Privacy policy: [ozaponline.com/privacidade](https://ozaponline.com/privacidade). Terms: [ozaponline.com/termos](https://ozaponline.com/termos).
 
