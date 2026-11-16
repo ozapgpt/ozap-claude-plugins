@@ -1,6 +1,6 @@
 # oZapOnline plugins for Claude Code
 
-Marketplace with the official oZapOnline plugin for Claude Code. oZapOnline puts an AI agent on a business WhatsApp number; the `ozap` plugin lets you set up, test and run that agent from Claude Code, with a confirmation before every message sent and every change to the agent.
+Marketplace with the official oZapOnline plugin for Claude Code. oZapOnline puts an AI agent on a business WhatsApp number; the `ozap` plugin lets you set up, test and run that agent from Claude Code, with Claude showing every message and every change to the agent and waiting for your approval.
 
 ```
 /plugin marketplace add ozapgpt/ozap-claude-plugins

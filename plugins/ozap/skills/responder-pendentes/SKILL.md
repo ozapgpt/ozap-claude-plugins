@@ -5,7 +5,7 @@ description: Escreve as respostas para os clientes que estão esperando no Whats
 
 # Responder pendentes
 
-O Claude escreve, o dono aprova, e só então a mensagem sai. Nada é enviado sem o "sim" do usuário, e o plugin ainda pede confirmação a cada envio. Serve para quem responde os clientes à mão, com ou sem a IA automática do oZap.
+O Claude escreve, o dono aprova, e só então a mensagem sai. Nada é enviado sem o "sim" do usuário. Serve para quem responde os clientes à mão, com ou sem a IA automática do oZap.
 
 ## 1. Achar quem está esperando
 
