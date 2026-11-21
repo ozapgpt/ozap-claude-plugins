@@ -41,6 +41,7 @@ O plugin funciona com os dois. O tipo de cada número aparece em `get_connection
 | `/ozap:triar-conversas` | Ver quem está esperando resposta e o que cada um pediu |
 | `/ozap:responder-pendentes` | O Claude escreve as respostas de quem está esperando e você aprova antes de cada envio |
 | `/ozap:relatorio-semanal` | Resumo do atendimento no período |
+| `/ozap:automacao-e-agenda` | Follow-up, agenda, regras de número ("Somente Responder"), campos de lead, mídias e ajustes do atendente |
 | `/ozap:conectar-whatsapp` | Gerar o link para conectar um número |
 | `/ozap:integrar-api` | Integrar o seu sistema pela API REST e webhooks |
 
@@ -69,12 +70,13 @@ Você escolhe na tela de consentimento. O Claude só vê as ferramentas das perm
 | `manage_funnel` | Montar o funil a partir de um modelo pronto |
 | `manage_automation` | Follow-up e regras de números |
 | `manage_connection` | Ligar o agente ao número e gerar o link de conexão |
+| `connect_customer` | Gerar o código de conexão do cliente, só no número de suporte liberado pelo servidor |
 
-Com permissão de ler conversas, o acesso fica restrito a um número.
+Com permissão de ler conversas, o acesso fica restrito a um número. As permissões de configuração (`read_config`, `configure_agent`, `manage_knowledge`, `manage_funnel`, `manage_automation`, `manage_connection`) só funcionam em conta liberada para elas: em outra conta as ferramentas não aparecem. Antes de escrever qualquer coisa, confira nas instruções do servidor que a conexão diz "scoped to instance N" e que N é o número do cliente certo.
 
 ## Segurança
 
-- **Aprovação antes de agir.** As skills do plugin e as instruções do servidor do oZapOnline mandam o Claude mostrar cada mensagem e cada mudança no atendente e esperar o seu "sim". O Claude Code também pede permissão para cada ferramenta do oZapOnline que você ainda não liberou. Algumas ferramentas que mudam quem é atendido devolvem primeiro uma prévia e só agem quando chamadas de novo com um código de confirmação.
+- **Aprovação antes de agir.** As skills do plugin e as instruções do servidor do oZapOnline mandam o Claude mostrar cada mensagem e cada mudança no atendente e esperar o seu "sim". O Claude Code também pede permissão para cada ferramenta do oZapOnline que você ainda não liberou. Algumas ferramentas que mudam quem é atendido devolvem primeiro uma prévia e só agem quando chamadas de novo, com os mesmos argumentos, com um código de confirmação (`confirm_token`), que o Claude só usa depois do seu "sim" e nunca guarda.
 - **Mensagens de clientes são dados, não ordens.** O texto das conversas chega ao Claude marcado como conteúdo não confiável, e o plugin lembra o Claude disso a cada leitura. Se uma mensagem tentar dar ordens ao Claude, ele deve avisar você.
 - **Sem envio em massa.** O oZapOnline não serve para disparo em massa nem para mandar mensagem a quem não pediu. Há um teto de envios por número (tabela acima).
 - **Nenhuma chave no chat.** O login é por OAuth. Nunca cole chave de API, senha ou chave de provedor de IA numa conversa com o Claude.
@@ -113,9 +115,9 @@ Then run `/mcp`, pick `plugin:ozap:ozap` and **Authenticate**. Sign in to oZapOn
 
 **Two kinds of WhatsApp connection.** A number connects either by QR code, like WhatsApp Web (not an official Meta API; WhatsApp may restrict a number that sends bulk or unsolicited messages), or through the official WhatsApp Business Platform (pending Meta approval for self-service sign-up; Meta rules apply, including approved templates outside the 24-hour window). Sends through the API and MCP are capped at 60 per hour and 300 per day per QR-connected number. The plugin works with both.
 
-**What you can ask.** The commands `/ozap:configurar-cliente` (set up an agent from scratch), `/ozap:revisar-atendente` (review the prompt), `/ozap:testar-e-ir-ao-ar` (test without messaging anyone, then go live on your order), `/ozap:diagnosticar` (why the AI is not replying, read only), `/ozap:triar-conversas` (who is waiting for a reply), `/ozap:responder-pendentes` (Claude drafts replies to waiting customers and you approve each send), `/ozap:relatorio-semanal` (period summary), `/ozap:conectar-whatsapp` (connection link) and `/ozap:integrar-api` (REST API and webhooks). Examples: "Which customers have been waiting for a reply since yesterday?", "Read my agent's prompt and tell me what is missing.", "Pause the AI in the chat with Maria until 9am tomorrow and move her to Negotiation."
+**What you can ask.** The commands `/ozap:configurar-cliente` (set up an agent from scratch), `/ozap:revisar-atendente` (review the prompt), `/ozap:testar-e-ir-ao-ar` (test without messaging anyone, then go live on your order), `/ozap:diagnosticar` (why the AI is not replying, read only), `/ozap:triar-conversas` (who is waiting for a reply), `/ozap:responder-pendentes` (Claude drafts replies to waiting customers and you approve each send), `/ozap:relatorio-semanal` (period summary), `/ozap:automacao-e-agenda` (follow-up, calendar, number rules, lead fields, media), `/ozap:conectar-whatsapp` (connection link) and `/ozap:integrar-api` (REST API and webhooks). Examples: "Which customers have been waiting for a reply since yesterday?", "Read my agent's prompt and tell me what is missing.", "Pause the AI in the chat with Maria until 9am tomorrow and move her to Negotiation."
 
-**Permissions.** Chosen on the consent screen; Claude only sees the tools of the permissions granted. With chat-reading permission, access is limited to one number.
+**Permissions.** Chosen on the consent screen; Claude only sees the tools of the permissions granted, including `connect_customer` (pairing code, support number only). With chat-reading permission, access is limited to one number. The configuration permissions only work on an account enabled for them. Before writing anything, check that the server instructions say "scoped to instance N" and that N is the right customer's number.
 
 **Safety.** The plugin's skills and the oZapOnline server instructions tell Claude to show every message and every change to the agent and wait for your approval. Claude Code also asks permission for each oZapOnline tool you have not allowed yet. Some tools that change who gets answered return a preview first and only act when called again with a confirmation token. Customer messages reach Claude marked as untrusted content, and the server instructions and skills tell Claude to treat them as data, never as instructions. No bulk or unsolicited messaging. Sign-in is OAuth; never paste keys or passwords into a chat. Revoke any connected AI app in the dashboard under **IA e API > Acessos**.
 
