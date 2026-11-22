@@ -7,6 +7,8 @@ description: Escreve as respostas para os clientes que estão esperando no Whats
 
 O Claude escreve, o dono aprova, e só então a mensagem sai. Nada é enviado sem o "sim" do usuário. Serve para quem responde os clientes à mão, com ou sem a IA automática do oZap.
 
+**Perfil de operação.** Esta skill vale para a credencial de operação (`query_data` e `send_message`). Pelo manual `configurar-cliente` (regra 1), no perfil de operação você escreve e o humano aprova cada mensagem, uma por vez; no perfil de montagem, **nunca** se envia mensagem a cliente final, e esta skill não deve ser usada para enviar. Se a credencial for de montagem e trouxer `send_message`, avise o usuário e não envie.
+
 ## 1. Achar quem está esperando
 
 1. `list_chats` com `archived: "exclude"` e `limit: 50`. Se o usuário pedir, use `search` ou `stage_id`. Isso é só a primeira página: diga ao usuário quantas conversas o número tem no total e ofereça ler as páginas seguintes (`page: 2`, `3`…) se ele quiser ir mais para trás.
@@ -52,7 +54,7 @@ Não envie nada antes dessa resposta.
 
 ## 5. Enviar
 
-- Só as aprovadas, uma `send_message` por vez, em sequência, nunca em paralelo.
+- Só as aprovadas, com o destino e o texto inteiro mostrados antes, uma `send_message` por vez, em sequência, nunca em paralelo.
 - `to`: o `chat_id` da conversa, exatamente como `list_chats` devolveu.
 - `message`: o texto aprovado, sem mudar nada.
 - `idempotency_key`: `responder-<chat_id>-<message_id da última mensagem do cliente>`, para que repetir a rodada não mande duas vezes.
